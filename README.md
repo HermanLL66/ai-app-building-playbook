@@ -48,11 +48,15 @@ That sentence gives the assistant a target, constraints, and a way to check its 
 5. **Separate test levels.** A passing unit test does not prove that permissions, devices, or a third-party app work.
 6. **Publish the method with the implementation.** Let readers understand the choices and reproduce the checks.
 
-These are lessons reconstructed from the implementation and its verification tools. The prompts are reusable examples, not a verbatim conversation transcript. There is no claim about a particular model, number of prompts, development time, or universal app compatibility.
+These are lessons reconstructed from the implementation and its verification tools. The prompts are reusable examples, not a verbatim conversation transcript. There is no claim about a particular model, number of prompts, development time, or universal app compatibility. Human listening remains a separate acceptance check: a passed digital gain test cannot establish a comfortable slider, unchanged remote voice levels, or conferencing echo cancellation.
 
 ## The reference app
 
 Volume Mixer discovers audio-producing applications, groups helper processes under their owning app when possible, and provides per-app volume, mute, search, saved settings, and a menu bar entry.
+
+<img src="docs/assets/interface-preview.png" width="560" alt="Experimental Volume Mixer interface, explicitly labeled sample data" />
+
+The image is a native SwiftUI layout render with sample data, not a recording or compatibility test. The current example is an **experimental 0.2.0 source candidate**: a refined interface, 0–200% amplitude controls, a 30 ms ramp, linked peak limiting, and tap-only capture plus output-only AUHAL rendering. Shared-backend development measurements are recorded separately; this English bundle still needs a real-audio run. The [separate standalone 0.1.0 download](https://github.com/HermanLL66/mac-volume-mixer/releases/tag/v0.1.0) retains its earlier interface and 0–100% behavior; no 0.2.0 binary is published.
 
 The public example has an English interface and no app-specific presets or preferred messaging app. It processes audio locally in memory and contains no network client or AI API integration. AI assists development; it is not required to run the finished app.
 

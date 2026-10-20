@@ -4,6 +4,14 @@ A native macOS reference app for independent local playback volume. Built with S
 
 This example accompanies the [AI app-building playbook](../../README.md). It has no preferred messaging app or app-specific preset. It is an educational source build with a general-purpose interface.
 
+## Current source status
+
+This is the **experimental 0.2.0 source candidate**, not a newly published binary. The [standalone 0.1.0 download](https://github.com/HermanLL66/mac-volume-mixer/releases/tag/v0.1.0) remains an earlier 0–100% build. Shared-backend development measurements are recorded separately; real audio for this English bundle remains pending; previous compilation, mock checks, and historical audio results do not validate it.
+
+<img src="../../docs/assets/interface-preview.png" width="560" alt="Experimental native SwiftUI interface labeled DESIGN PREVIEW · SAMPLE DATA" />
+
+The image is a layout render using sample data, not evidence that the displayed apps or a real call were tested.
+
 ## Requirements and build
 
 - macOS 14.4 or later.
@@ -24,7 +32,7 @@ Output: `dist/Volume Mixer.app` and `dist/Volume Mixer.zip`. No third-party runt
 
 1. Start playback in an application so it can be discovered.
 2. Open Volume Mixer, click **Enable**, and grant system audio access if macOS asks. Initial verification plays a very quiet generated tone.
-3. Set an app's slider between 0% and 100%, or use its speaker button to mute it. Settings are saved automatically.
+3. Set an app's slider between 0% and 200%, or use its speaker button to mute it. Settings are saved automatically. 100% is unity and sits at 75% of slider travel; the final quarter is the boost range.
 4. Use **Pause** to release processing while retaining preferences. **Reset all** restores all saved settings to 100% and unmutes them.
 5. Close the window to keep the app in the menu bar. **Quit** releases the app's audio resources.
 
@@ -34,16 +42,21 @@ This public example uses a distinct bundle identifier and does not reuse another
 
 ## Scope
 
-- Controls local playback, not microphone gain sent to a call participant.
+- Targets local playback. The backend uses tap-only private aggregate capture and a separate output-only AUHAL with physical input I/O disabled. It does not capture a microphone or set its gain.
+- The read-only input-state checks do not establish unchanged conferencing echo cancellation, automatic gain control, or remote voice level. Real calls and Bluetooth have not been validated.
 - Groups an app's helper processes when an owning application can be identified.
 - Browser tabs share an application volume.
 - Follows the default output device without replacing it or changing hardware master volume.
 - At 100%, returns the application to its original playback path.
 - Processes audio in local memory without saving or uploading audio.
+- Uses a 30 ms gain ramp and linked stereo peak limiting. 200% requests 2× amplitude before limiting, not twice the perceived loudness.
+- Separating capture and rendering adds a buffer target of approximately 20 ms, plus hardware and scheduling latency.
 
 Protected media, exclusive devices, unusual formats, and special-purpose processes may be unsupported. Support must be checked with the actual app, OS version, and output device. Digital gain ratios do not directly measure perceived or acoustic loudness.
 
 ## Verification
+
+**English-bundle real-audio checks are pending.** Shared-backend local development results are recorded separately. Run the commands below to collect version-specific evidence; their presence is not a passed result. Test the new gain range and limiter with controlled signals and headroom, then test overload, independent channels, idle/resume, cleanup, and buffering. Actual call listening must be checked separately.
 
 Quit other instances of this example before running an app-based diagnostic. Create the output directory first. Diagnostics save JSON reports; inspect `passed`, error/reason fields, and cleanup results instead of relying only on process exit status.
 
@@ -90,7 +103,7 @@ Open `Tests/BrowserAudio.html` in Chrome and click **Start test tone**. Keep it 
 open -n "dist/Volume Mixer.app" --args --verify-chrome "$PWD/output/chrome-verification.json"
 ```
 
-The check temporarily applies 50%, 25%, and mute to Chrome, compares independently captured digital output with its original baseline, then checks restoration and cleanup. Stop the fixture afterward.
+The check temporarily applies 50%, 25%, 150%, 200%, and mute to a quiet Chrome fixture, holds 50% for at least 60 seconds, compares independently captured digital output with its original baseline, then checks restoration and cleanup. Stop the fixture afterward.
 
 ### Inspect discovery
 

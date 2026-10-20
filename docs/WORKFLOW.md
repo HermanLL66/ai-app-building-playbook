@@ -12,7 +12,7 @@ Begin with a real situation: several apps are playing sound, and you want indepe
 | --- | --- |
 | User | A Mac user listening to multiple apps |
 | Problem | Changing system volume affects everything |
-| Essential action | Adjust one app between 0% and 100% |
+| Essential first action | Reduce one app from its original level; introduce boost only after independent attenuation is verified |
 | Must preserve | Other apps, default output device, and hardware volume |
 | Recovery | Pause or quit to restore the original playback path |
 | Out of scope | Per-browser-tab control, microphone gain, cloud accounts |
@@ -123,3 +123,5 @@ Use [VERIFICATION.md](../templates/VERIFICATION.md) to record what was actually 
 Write the target behavior. Ask for a small implementation. Run it. Inspect the result. Give one precise correction. Preserve the working state. Repeat until the original acceptance criteria are satisfied.
 
 The value of the method comes from that feedback loop. The prompt library helps express each step; it does not replace the need to inspect the app.
+
+The current example also illustrates why evidence must follow the revision. Its experimental 0.2.0 source adds a shaped 0–200% slider, a 30 ms ramp, linked limiting, and a separate capture/render path. Prior passing reports do not prove that revision. Read-only input properties cannot prove unchanged conferencing behavior. Keep those checks pending until the new code is run, and retain human listening as an explicit acceptance step.
