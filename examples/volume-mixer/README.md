@@ -6,7 +6,7 @@ This example accompanies the [AI app-building playbook](../../README.md). It has
 
 ## Current source status
 
-This is the **experimental 0.2.0 source candidate**, not a newly published binary. The [standalone 0.1.0 download](https://github.com/HermanLL66/mac-volume-mixer/releases/tag/v0.1.0) remains an earlier 0–100% build. Shared-backend development measurements are recorded separately; real audio for this English bundle remains pending; previous compilation, mock checks, and historical audio results do not validate it.
+This is the **source for the experimental 0.2.0 pre-release**, an educational source example. A separate [0.2.0 experimental Apple Silicon download](https://github.com/HermanLL66/mac-volume-mixer/releases/download/v0.2.0/Volume-Mixer-0.2.0-macOS-arm64.zip) is available for macOS 14.4+; it is ad hoc signed and not notarized. The historical 0.1.0 download remains an earlier 0–100% build. Shared-backend development measurements are recorded separately; real audio for this English bundle remains pending; previous compilation, mock checks, and historical audio results do not validate it.
 
 <img src="../../docs/assets/interface-preview.png" width="560" alt="Experimental native SwiftUI interface labeled DESIGN PREVIEW · SAMPLE DATA" />
 

@@ -1,8 +1,8 @@
 # Verification record by revision
 
-## Experimental 0.2.0 source candidate
+## Experimental 0.2.0 source and standalone pre-release
 
-The current source changes the interface, gain range, ramp, limiter, buffering, and capture/render topology. Historical checks below apply only to their original revision. No 0.2.0 binary is published.
+The current source changes the interface, gain range, ramp, limiter, buffering, and capture/render topology. Historical checks below apply only to their original revision. The separate standalone 0.2.0 binary is an experimental pre-release; its English-bundle real-audio validation remains pending.
 
 | Check | Status | Evidence boundary |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ The [preview](assets/interface-preview.png) explicitly says **SAMPLE DATA**. The
 
 ## Shared-backend development measurements
 
-On October 20, 2026, the local development bundle 1.1.0 was checked on macOS 14.6.1, Apple Silicon, built-in stereo output at 48 kHz. It uses the revised backend shared by this source candidate. This is **not** a real-audio result for the English 0.2.0 bundle: its distinct identity requires its own permission and integration check. The [sanitized record](verification/revised-backend-local.json) omits local paths, process/object IDs, and device identifiers.
+On October 20, 2026, the local development bundle 1.1.0 was checked on macOS 14.6.1, Apple Silicon, built-in stereo output at 48 kHz. It uses the revised backend shared by this pre-release source. This is **not** a real-audio result for the English 0.2.0 bundle: its distinct identity requires its own permission and integration check. The [sanitized record](verification/revised-backend-local.json) omits local paths, process/object IDs, and device identifiers.
 
 - A 20.24-second engine exercise passed two independent sources, more than four seconds of actual idle/resume, process restart and in-place replacement, independent mute, and cleanup.
 - Default input and output identity, sample rate, and supported volume/mute controls remained unchanged; each observed output AUHAL had physical input I/O disabled. No microphone audio was recorded.
@@ -51,7 +51,7 @@ The [first GitHub Actions run](https://github.com/HaomingLyu613/ai-app-building-
 ## Remaining verification limits
 
 - The optional real-audio, engine, independent-output, and Chrome integration diagnostics were not rerun for this new bundle identity.
-- The earlier publication did not include a visual review; the current candidate has a separate sample-data preview review described above.
+- The earlier publication did not include a visual review; the current pre-release has a separate sample-data preview review described above.
 - Broad app, output-device, and OS-version compatibility has not been established.
 - Developer ID signing, notarization, and end-user distribution are not configured.
 

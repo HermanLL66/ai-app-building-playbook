@@ -8,7 +8,7 @@ The implementation is shared as a concrete case for AI-assisted development. Thi
 
 ## Version boundary
 
-The current source is the experimental 0.2.0 candidate. The downloadable standalone 0.1.0 release uses the earlier UI and audio path. A passing report belongs to the version and environment that produced it; it does not validate a later backend rewrite. Shared-backend development measurements are recorded separately; this English bundle still needs a real-audio run.
+The current source is the experimental 0.2.0 pre-release. The separate standalone 0.2.0 download is an experimental pre-release. Historical 0.1.0 downloads use the earlier UI and audio path. A passing report belongs to the version and environment that produced it; it does not validate a later backend rewrite. Shared-backend development measurements are recorded separately; this English bundle still needs a real-audio run.
 
 The [current interface preview](assets/interface-preview.png) is a native SwiftUI render explicitly labeled sample data. It demonstrates the visual design, not the listed apps' audio compatibility.
 
@@ -75,7 +75,7 @@ This is a useful pattern for utilities that temporarily own resources. Success i
 
 ### Treat the slider and signal as separate representations
 
-The source candidate stores real amplitude percentages from 0% to 200%. Its shaped slider places unity at 75% travel and leaves the final quarter for boost. A 30 ms ramp smooths gain changes; a linked stereo limiter reduces peaks with one shared factor. The visual mapping improves adjustment space without relabeling a signal's gain. A 200% setting requests 2× amplitude before limiting, not twice the perceived loudness.
+The pre-release source stores real amplitude percentages from 0% to 200%. Its shaped slider places unity at 75% travel and leaves the final quarter for boost. A 30 ms ramp smooths gain changes; a linked stereo limiter reduces peaks with one shared factor. The visual mapping improves adjustment space without relabeling a signal's gain. A 200% setting requests 2× amplitude before limiting, not twice the perceived loudness.
 
 ### Trace a reported side effect before claiming isolation
 
