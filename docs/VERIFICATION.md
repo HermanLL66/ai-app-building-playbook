@@ -15,12 +15,15 @@ The rapid-update check retained the final 37% setting after 1,001 slider changes
 
 The first copy to the Desktop encountered Finder metadata that interfered with signature verification. The build script now makes up to three metadata-cleanup and verification attempts, and still fails if the copied bundle cannot be verified. The final local build passed.
 
-## Checks not performed for this generalized edition
+## Hosted verification
+
+The [first GitHub Actions run](https://github.com/HaomingLyu613/ai-app-building-playbook/actions/runs/39372163621) completed successfully for commit `a752470e6905458eee132db94c2b8c11ed6bc18e`. It ran the DSP sanitizer tests, built and verified the bundle, and checked the mock worker on the hosted macOS runner. This extends the local checks above; it does not exercise real audio.
+
+## Remaining verification limits
 
 - The optional real-audio, engine, independent-output, and Chrome integration diagnostics were not rerun for this new bundle identity.
 - The English interface was not visually reviewed in this publication pass.
 - Broad app, output-device, and OS-version compatibility has not been established.
-- The GitHub Actions workflow is provided; a hosted CI run is not part of the local results above.
 - Developer ID signing, notarization, and end-user distribution are not configured.
 
 The source includes the audio diagnostics and [instructions to run them](../examples/volume-mixer/README.md#verification). Local compilation and mock-worker results do not establish those unperformed checks.
